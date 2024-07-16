@@ -1,20 +1,18 @@
+import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} from 'react-router-dom'
 import React from 'react'
-import Navbar from './components/Navbar'
-import Banner from './components/Banner'
-import JobCard from './components/JobCard'
-import JobListing from './components/JobListing'
-import ViewJobs from './components/ViewJobs'
+import HomePage from './pages/HomePage';
+import MainLayout from './layouts/MainLayout';
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element= {<MainLayout/>}>
+      <Route index element= {<HomePage/>} />
+    </Route>
+  )
+);
 
 const App = () => {
-  return (
-   <>
-   <Navbar />
-   <Banner />
-   <JobCard />
-   <JobListing />
-   <ViewJobs />
-   </>
-  )
-}
+  return <RouterProvider router={router} />;
+};
 
 export default App

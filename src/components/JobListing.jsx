@@ -2,7 +2,7 @@ import JobList from './JobList';
 import jobs from '../jobs.json';
 
 const JobListing = ( {title = 'Browser Jobs'}) => {
-  // Display only three jobs vaccancy
+  // Display only three jobs vacancy
   const recentJobs = jobs.slice(0,3);
   return (
     <>
