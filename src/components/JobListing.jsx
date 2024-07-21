@@ -13,21 +13,25 @@ const JobListing = ( {isHome = false}) => {
 
   useEffect(()=> {
     const fetchJobs = async()=> {
-      try{
-        const response = await fetch ('http://localhost:8000/jobs');
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+      const apiUrl = isHome 
+      // ? 'http://localhost:8000/jobs?_limit=3'  // Assuming your API supports a limit query parameter
+      // : 'http://localhost:8000/jobs'
+      ? '/api/jobs?_limit=3'  // Use the /api prefix to indicate this should be proxied
+      : '/api/jobs';
+        try{
+          const response = await fetch (apiUrl);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const result = await response.json();
+          setJobs(result);
+          setLoading(false);
         }
-        const result = await response.json();
-        setJobs(result);
-        setLoading(false);
-      }
-      catch(error){
-        setError(error);
-        setLoading(false);
+        catch(error){
+          setError(error);
+          setLoading(false);
 
-      }
+        }
           
     }
 
