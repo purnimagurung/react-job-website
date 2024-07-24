@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const AddJobpage = () => {
+const AddJobpage = ({addJobSubmit}) => {
   const [title, setTitle] = useState('');
   const [type, setType] = useState('Full-Time');
   const [location, setLocation] = useState('');
@@ -10,6 +11,7 @@ const AddJobpage = () => {
   const [companyDescription, setCompanyDescription] = useState('');
   const [companyEmail, setCompanyEmail] = useState('');
   const [companyPhone, setCompanyPhone] = useState('');
+  const navigate = useNavigate();
   
 /* submit function */
   const submitForm = (e) => {
@@ -30,7 +32,8 @@ const AddJobpage = () => {
         companyPhone
       },
     };
-    console.log(newJob);
+    addJobSubmit(newJob);
+    return navigate('/jobs');
   };
   
   return (

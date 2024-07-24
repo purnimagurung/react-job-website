@@ -7,19 +7,25 @@ import NotFoundPage from './pages/NotFoundPage';
 import JobPage, {jobLoader} from './pages/JobPage';
 import AddJobpage from './pages/AddJobpage';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element= {<MainLayout/>}>
-      <Route index element= {<HomePage/>} />
-      <Route path = '/jobs' element= {<JobsPage/>} />
-      <Route path = 'jobs/:id' element= {<JobPage/>} loader = {jobLoader} />
-      <Route path = '/add-job' element= {<AddJobpage/>} />
-      <Route path = '*' element= {<NotFoundPage/>} />
-    </Route>
-  )
-);
+
 
 const App = () => {
+  const addJob = (newJob) => {
+    console.log(addJob);
+  }
+  
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path='/' element= {<MainLayout/>}>
+        <Route index element= {<HomePage/>} />
+        <Route path = '/jobs' element= {<JobsPage/>} />
+        <Route path = 'jobs/:id' element= {<JobPage/>} loader = {jobLoader} />
+        <Route path = '/add-job' element= {<AddJobpage addJobSubmit={addJob}/>} />
+        <Route path = '*' element= {<NotFoundPage/>} />
+      </Route>
+    )
+  );
+
   return <RouterProvider router={router} />;
 };
 
